@@ -1,0 +1,34 @@
+header[role="banner"] #logo-main {
+  display: block;
+  margin: 20px auto;
+}
+#navbar-primary.navbar-default {
+  background: transparent;
+  border: none;
+}
+#navbar-primary.navbar-default .navbar-nav {
+  width: 100%;
+  text-align: center;
+}
+#navbar-primary.navbar-default .navbar-nav > li {
+  display: inline-block;
+  float: none;
+  
+
+}
+#navbar-primary.navbar-default .navbar-nav > li > a {
+  padding-left: 30px;
+  padding-right: 30px;
+  color:#000080;
+  font-size: 18px;
+}
+#navbar-primary.navbar-default .navbar-nav > li > a > .active {
+   width: 140px;
+    background: red;
+    border-radius: 100px ;
+    color:  #18AD7C !important;
+    text-align: center;
+    font-weight: bolder;
+    display: block;
+  
+}
