@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Calorie App</h1>
+<h1 id="username" class="text-center">Hi {{ request.user }} </h1><span><a href="{% url "logout" %}">Logout</a></span>
 {% endblock content %}

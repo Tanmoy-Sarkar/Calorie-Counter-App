@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@1&display=swap');
+
 header[role="banner"] #logo-main {
+
   display: block;
   margin: 20px auto;
 }
@@ -34,8 +37,6 @@ header[role="banner"] #logo-main {
 }
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-
-/* BASIC */
 
 
 
@@ -110,4 +111,8 @@ box-shadow: none;
   color: #444;
   display: block;
     margin-top: 12px;
+}
+
+#username {
+font-family: 'IM Fell DW Pica', serif;
 }
