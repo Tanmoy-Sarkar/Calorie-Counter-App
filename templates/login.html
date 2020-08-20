@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login">
+        <div class="login-screen">
+            <div class="app-title">
+                <h1>Login</h1>
+            </div>
+
+            <form method="POST" action="" class="login-form">
+              {% csrf_token %}
+                <div class="control-group">
+                <input type="text" name="username" placeholder="Username..." class="form-control">
+                
+                </div>
+
+                <div class="control-group">
+                <input type="password" name="password" placeholder="Password..." class="form-control" >
+                </div>   
+               
+                <input class="btn login_btn" type="submit" value="Login">
+
+            </form>
+            {% for message in messages %}
+                    <p id="messages">{{message}}</p>
+            {% endfor %}            
+        
+            <div class="pt-8">
+                <div class="d-flex justify-content-center links pt-5">
+                    Don't have an account? <a href="" class="ml-2">Sign Up</a>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+  
+
+{% endblock content %}
