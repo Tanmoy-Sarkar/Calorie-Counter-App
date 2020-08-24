@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login">
+        <div class="login-screen">
+            <div class="app-title">
+                <h1>Add Food Item</h1>
+            </div>
+
+            <form method="POST" action="" class="login-form">
+              {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn login_btn" type="submit" value="Login">
+
+            </form>
+     
+
+{% endblock content %}
