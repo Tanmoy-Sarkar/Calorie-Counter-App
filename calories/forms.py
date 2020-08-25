@@ -10,11 +10,22 @@ class CreateUserForm(UserCreationForm):
 		model = User
 		fields = ['username','email','password1','password2']
 
-class AddFoodForm(forms.ModelForm):
+class SelectFoodForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('food_selected',)
+        fields = ('food_selected','quantity')
 
     def __init__(self, user, *args, **kwargs):
-        super(AddFoodForm, self).__init__(*args, **kwargs)
+        super(SelectFoodForm, self).__init__(*args, **kwargs)
         self.fields['food_selected'].queryset = Food.objects.filter(person_of=user)
+
+class AddFoodForm(forms.ModelForm):
+    class Meta:
+        model = Food
+        fields = ('name','quantity','calorie')
+
+   
+
+
+
+        

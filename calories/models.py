@@ -15,9 +15,16 @@ class Food(models.Model):
 
 class Profile(models.Model):
 	person_of = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
-	calorie_count = models.FloatField()
+	calorie_count = models.FloatField(null=True,blank=True)
 	food_selected = models.ForeignKey(Food,on_delete=models.CASCADE)
+	quantity = models.IntegerField(default=0)
+
+	def save(self, *args, **kwargs):# new
+		self.amount = self.food_selected.calorie  
+		self.calorie_count = self.amount*self.quantity     
+		super(Profile, self).save(*args,**kwargs)
+
 
 	def __str__(self):
-		return self.person_of
+		return self.person_of.username
 
