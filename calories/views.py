@@ -9,7 +9,15 @@ from .models import *
 
 @login_required(login_url='login')
 def HomePageView(request):
-	return render(request, 'home.html')
+	total_calorie = 0
+	calories = Profile.objects.filter(person_of=request.user)
+	
+	for calorie in calories:
+		total_calorie = total_calorie + calorie.calorie_count
+	context = {
+	'total_calorie':total_calorie,
+	}
+	return render(request, 'home.html',context)
 
 def RegisterPage(request):
 	if request.user.is_authenticated:
