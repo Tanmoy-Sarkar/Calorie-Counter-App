@@ -10,12 +10,12 @@ from .models import *
 @login_required(login_url='login')
 def HomePageView(request):
 	total_calorie = 0
-	calories = Profile.objects.filter(person_of=request.user)
+	calories = Profile.objects.get(person_of=request.user)
 	
-	for calorie in calories:
-		total_calorie = total_calorie + calorie.calorie_count
+	# for calorie in calories:
+	# 	total_calorie = total_calorie + calorie.calorie_count
 	context = {
-	'total_calorie':total_calorie,
+	'total_calorie':calories.total_calorie,
 	}
 	return render(request, 'home.html',context)
 
@@ -60,14 +60,16 @@ def LogOutPage(request):
 
 
 @login_required
-def new_food(request):
+def select_food(request):
+	person = Profile.objects.get(person_of=request.user)
 	food_items = Food.objects.filter(person_of=request.user)
+	form = SelectFoodForm(request.user,instance=person)
+
 	if request.method == 'POST':
-		form = SelectFoodForm(request.user,request.POST)
+		form = SelectFoodForm(request.user,request.POST,instance=person)
 		if form.is_valid():
-			profile = form.save(commit=False)
-			profile.person_of = request.user
-			profile.save()
+			
+			form.save()
 			return redirect('home')
 	else:
 		form = SelectFoodForm(request.user)
