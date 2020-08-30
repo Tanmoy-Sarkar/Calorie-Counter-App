@@ -18,10 +18,12 @@ class Profile(models.Model):
 	calorie_count = models.FloatField(null=True,blank=True,default=0)
 	food_selected = models.ForeignKey(Food,on_delete=models.CASCADE)
 	quantity = models.IntegerField(default=0)
+	total_calorie = models.IntegerField(default=0,null=True)
 
 	def save(self, *args, **kwargs):# new
-		self.amount = self.food_selected.calorie  
-		self.calorie_count = self.amount*self.quantity     
+		self.amount = (self.food_selected.calorie/self.food_selected.quantity) 
+		self.calorie_count = self.amount*self.quantity
+		self.total_calorie = self.calorie_count + self.total_calorie     
 		super(Profile, self).save(*args,**kwargs)
 
 
