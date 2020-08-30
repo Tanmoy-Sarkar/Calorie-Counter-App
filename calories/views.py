@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import CreateUserForm,SelectFoodForm,AddFoodForm
 from .models import *
+from datetime import timedelta
+from django.utils import timezone
 # Create your views here.
 
 @login_required(login_url='login')
@@ -12,10 +14,14 @@ def HomePageView(request):
 	total_calorie = 0
 	calories = Profile.objects.get(person_of=request.user)
 	
-	# for calorie in calories:
-	# 	total_calorie = total_calorie + calorie.calorie_count
+	some_day_last_week = timezone.now().date() - timedelta(days=2)
+	monday_of_last_week = some_day_last_week - timedelta(days=(some_day_last_week.isocalendar()[2] - 1))
+	monday_of_this_week = monday_of_last_week + timedelta(days=7)
+	records=Profile.objects.filter(time__gte=monday_of_last_week, time__lt=monday_of_this_week,person_of=request.user)
+	print(records)
 	context = {
 	'total_calorie':calories.total_calorie,
+	'records':records
 	}
 	return render(request, 'home.html',context)
 
