@@ -7,14 +7,16 @@ from .forms import CreateUserForm,SelectFoodForm,AddFoodForm
 from .models import *
 from datetime import timedelta
 from django.utils import timezone
+
+
 # Create your views here.
 
 @login_required(login_url='login')
 def HomePageView(request):
-	total_calorie = 0
+	
 	calories = Profile.objects.get(person_of=request.user)
 	
-	some_day_last_week = timezone.now().date() - timedelta(days=2)
+	some_day_last_week = timezone.now().date() - timedelta(days=7)
 	monday_of_last_week = some_day_last_week - timedelta(days=(some_day_last_week.isocalendar()[2] - 1))
 	monday_of_this_week = monday_of_last_week + timedelta(days=7)
 	records=Profile.objects.filter(time__gte=monday_of_last_week, time__lt=monday_of_this_week,person_of=request.user)
@@ -36,7 +38,7 @@ def RegisterPage(request):
 			if form.is_valid():
 				form.save()
 				user = form.cleaned_data.get('username')
-				messages.success(request.user + "Your account was created")
+				messages.success(request,"Account was created for "+ user)
 				return redirect('login')
 
 		context = {'form':form}
@@ -99,5 +101,4 @@ def add_food(request):
 	context = {'form':form,'food_items':food_items}
 
 	return render(request,'add_food.html',context)
-
 

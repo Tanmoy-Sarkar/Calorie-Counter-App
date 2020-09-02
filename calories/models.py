@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 # Create your models here.
 
 
@@ -16,18 +17,31 @@ class Food(models.Model):
 class Profile(models.Model):
 	person_of = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
 	calorie_count = models.FloatField(null=True,blank=True,default=0)
-	food_selected = models.ForeignKey(Food,on_delete=models.CASCADE)
+	food_selected = models.ForeignKey(Food,on_delete=models.CASCADE,null=True,blank=True)
 	quantity = models.PositiveIntegerField(default=0)
 	total_calorie = models.FloatField(default=0,null=True)
 	time = models.DateField(auto_now_add=True)
 
 	def save(self, *args, **kwargs):# new
-		self.amount = (self.food_selected.calorie/self.food_selected.quantity) 
-		self.calorie_count = self.amount*self.quantity
-		self.total_calorie = self.calorie_count + self.total_calorie     
-		super(Profile, self).save(*args,**kwargs)
+		if self.food_selected != None:
+			self.amount = (self.food_selected.calorie/self.food_selected.quantity) 
+			self.calorie_count = self.amount*self.quantity
+			self.total_calorie = self.calorie_count + self.total_calorie     
+			super(Profile, self).save(*args,**kwargs)
+		else:
+			super(Profile, self).save(*args,**kwargs)
 
 
 	def __str__(self):
-		return self.person_of.username
+		return str(self.person_of.username)
+
+def create_profile(sender,instance,created,**kwargs):
+	if created:
+		Profile.objects.create(person_of=instance)
+		print("profile created")
+
+post_save.connect(create_profile,sender=User)
+
+
+
 
