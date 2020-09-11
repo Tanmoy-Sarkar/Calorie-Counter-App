@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from datetime import date
+
 # Create your models here.
 
 
@@ -20,8 +22,9 @@ class Profile(models.Model):
 	food_selected = models.ForeignKey(Food,on_delete=models.CASCADE,null=True,blank=True)
 	quantity = models.PositiveIntegerField(default=0)
 	total_calorie = models.FloatField(default=0,null=True)
-	time = models.DateField(auto_now_add=True)
+	date = models.DateField(auto_now_add=True)
 
+	
 	def save(self, *args, **kwargs):# new
 		if self.food_selected != None:
 			self.amount = (self.food_selected.calorie/self.food_selected.quantity) 
@@ -43,5 +46,12 @@ def create_profile(sender,instance,created,**kwargs):
 post_save.connect(create_profile,sender=User)
 
 
+def update_profile(sender,instance,created,**kwargs):
+	if created == False:
+		Person = instance
+		present_time = date.today()
+		print("Hi there")
+		if present_time>Person.date:
+			Profile.objects.create(person_of=instance.person_of,total_calorie=0)
 
-
+post_save.connect(update_profile,sender=Profile)
