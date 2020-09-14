@@ -8,6 +8,7 @@ from .models import *
 from datetime import timedelta
 from django.utils import timezone
 from datetime import date
+from .filters import FoodFilter
 # Create your views here.
 
 @login_required(login_url='login')
@@ -101,7 +102,10 @@ def add_food(request):
 	else:
 		form = AddFoodForm()
 
-	context = {'form':form,'food_items':food_items}
+	myFilter = FoodFilter(request.GET,queryset=food_items)
+	food_items = myFilter.qs
+
+	context = {'form':form,'food_items':food_items,'myFilter':myFilter}
 
 	return render(request,'add_food.html',context)
 
