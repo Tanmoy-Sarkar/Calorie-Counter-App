@@ -13,7 +13,7 @@ class CreateUserForm(UserCreationForm):
 class SelectFoodForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('food_selected','quantity')
+        fields = ('food_selected','quantity',)
 
     def __init__(self, user, *args, **kwargs):
         super(SelectFoodForm, self).__init__(*args, **kwargs)

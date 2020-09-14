@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'background_task',
-    'calories',
+    'calories.apps.CaloriesConfig',
 ]
 
 MIDDLEWARE = [

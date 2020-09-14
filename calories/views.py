@@ -7,7 +7,6 @@ from .forms import CreateUserForm,SelectFoodForm,AddFoodForm
 from .models import *
 from datetime import timedelta
 from django.utils import timezone
-from .tasks import *
 from datetime import date
 # Create your views here.
 
@@ -16,6 +15,9 @@ def HomePageView(request):
 	
 	calories = Profile.objects.filter(person_of=request.user).last()
 	print(calories.id)
+	print(calories.date)
+	if date.today() > calories.date:
+		profile=Profile.objects.create(person_of=request.user)
 	some_day_last_week = timezone.now().date() - timedelta(days=7)
 	monday_of_last_week = some_day_last_week - timedelta(days=(some_day_last_week.isocalendar()[2] - 1))
 	monday_of_this_week = monday_of_last_week + timedelta(days=7)
@@ -25,7 +27,7 @@ def HomePageView(request):
 	'total_calorie':calories.total_calorie,
 	'records':records
 	}
-	print(date.today())
+	
 	return render(request, 'home.html',context)
 
 def RegisterPage(request):
