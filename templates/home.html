@@ -3,7 +3,17 @@
 {% block content %}
 <h1 id="username" class="text-center">Hi {{ request.user }} </h1><span><a href="{% url "logout" %}">Logout</a></span>
 {{ total_calorie }}
+{{ calorie_goal }}
 {% for record in records %}
 {{ record.total_calorie }}
 {% endfor %}
+{% if calorie_goal_status > 0 %}
+<h1>You need  {{ calorie_goal_status }} calories more to reach your goal </h1>
+{% elif calorie_goal == 0 %}
+<h1>Enter your calorie goal for the day </h1>
+{% else %}
+<h1>You surpassed your goal by {{ over_calorie }} calories </h1>
+{% endif %}
+
+
 {% endblock content %}

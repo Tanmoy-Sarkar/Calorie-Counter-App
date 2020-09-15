@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dacca'
 
 USE_I18N = True
 
@@ -129,3 +129,4 @@ Q_CLUSTER = {
     "orm": "default",  # Use Django's ORM + database for broker
     "sync":True,
 }
+
