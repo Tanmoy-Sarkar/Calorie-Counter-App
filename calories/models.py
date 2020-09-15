@@ -23,6 +23,7 @@ class Profile(models.Model):
 	quantity = models.PositiveIntegerField(default=0)
 	total_calorie = models.FloatField(default=0,null=True)
 	date = models.DateField(auto_now = True)
+	calorie_goal = models.PositiveIntegerField(default=0)
 
 	
 	def save(self, *args, **kwargs):# new
