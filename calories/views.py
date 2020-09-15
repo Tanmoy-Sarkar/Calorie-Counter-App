@@ -1,9 +1,8 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import CreateUserForm,SelectFoodForm,AddFoodForm
+from .forms import SelectFoodForm,AddFoodForm,CreateUserForm
 from .models import *
 from datetime import timedelta
 from django.utils import timezone
@@ -17,6 +16,7 @@ def HomePageView(request):
 	calories = Profile.objects.filter(person_of=request.user).last()
 	print(calories.id)
 	print(calories.date)
+	calorie_goal = calories.calorie_goal
 	if date.today() > calories.date:
 		profile=Profile.objects.create(person_of=request.user)
 	some_day_last_week = timezone.now().date() - timedelta(days=7)
@@ -24,9 +24,18 @@ def HomePageView(request):
 	monday_of_this_week = monday_of_last_week + timedelta(days=7)
 	records=Profile.objects.filter(date__gte=monday_of_last_week, date__lt=monday_of_this_week,person_of=request.user)
 	print(records)
+
+	calorie_goal_status = calorie_goal -calories.total_calorie
+	over_calorie = 0
+	if calorie_goal_status < 0 :
+		over_calorie = abs(calorie_goal_status)
+
 	context = {
 	'total_calorie':calories.total_calorie,
-	'records':records
+	'records':records,
+	'calorie_goal':calorie_goal,
+	'calorie_goal_status':calorie_goal_status,
+	'over_calorie' : over_calorie
 	}
 	
 	return render(request, 'home.html',context)
