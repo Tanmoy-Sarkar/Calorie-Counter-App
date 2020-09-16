@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login">
+        <div class="login-screen">
+            <div class="app-title">
+                <h1>Your Profile</h1>
+                <h1 class="text-center">{{ request.user }} </h1>
+
+            </div>
+
+            <form method="POST" action="" class="login-form">
+              {% csrf_token %}
+                {% for field in form %}
+                <h1>Calorie Goal For Today</h1>
+                {{ field }}
+                {% endfor %}
+                <input class="btn login_btn" type="submit" value="select">
+
+            </form>
+        </div>
+        <h1 class="text-center">All Food You Selected</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Food Name</th>
+                    <th scope="col">Calories</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for food in food_items %}
+                <tr>
+                    <th scope="row">{{ food.name }}</th>
+                    <td>{{ food.calorie }}</td>
+                    <td>{{ food.quantity }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>  
+    </div>
+     
+
+{% endblock content %}
