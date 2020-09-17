@@ -24,6 +24,8 @@ class Profile(models.Model):
 	total_calorie = models.FloatField(default=0,null=True)
 	date = models.DateField(auto_now = True)
 	calorie_goal = models.PositiveIntegerField(default=0)
+	food_selected_today = []
+	
 
 	
 	def save(self, *args, **kwargs):# new
@@ -31,10 +33,11 @@ class Profile(models.Model):
 			self.amount = (self.food_selected.calorie/self.food_selected.quantity) 
 			self.calorie_count = self.amount*self.quantity
 			self.total_calorie = self.calorie_count + self.total_calorie  
+			self.food_selected_today.append([str(self.food_selected.name),str(self.calorie_count),str(self.quantity)])
+			self.food_selected = None
 			super(Profile, self).save(*args,**kwargs)
 		
-		else:
-			super(Profile, self).save(*args,**kwargs)
+		
 
 
 
