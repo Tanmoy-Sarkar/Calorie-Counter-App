@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="login">
-        <div class="login-screen">
+    <h1>Your Profile</h1>
+        <div class="row mt-4 mb-4">
+            <div class="col-lg-5 card card-body">
             <div class="app-title">
-                <h1>Your Profile</h1>
-                <h1 class="text-center">{{ request.user }} </h1>
+                
+                <h1 class="text-center">Name :{{ request.user }} </h1>
 
             </div>
 
@@ -19,8 +20,34 @@
 
             </form>
         </div>
-        <h1 class="text-center">All Food You Selected</h1>
+     
+        <div class="col-lg-7">
+        <h1 class="text-center">Records From Past Week</h1>
         <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Calorie Consumed</th>
+                    <th scope="col">Calorie Goal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record.date }}</td>
+                    <td>{{ record.total_calorie }}</td>
+                    <td>{{ record.calorie_goal }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>  
+    </div>
+     
+   
+     </div>
+     <div class="row mt-5">
+      <table class="table table">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Food Name</th>
@@ -31,7 +58,7 @@
             <tbody>
                 {% for food in food_items %}
                 <tr>
-                    <th scope="row">{{ food.name }}</th>
+                    <td>{{ food.name }}</td>
                     <td>{{ food.calorie }}</td>
                     <td>{{ food.quantity }}</td>
                     
@@ -40,6 +67,5 @@
             </tbody>
         </table>  
     </div>
-     
-
+    
 {% endblock content %}
