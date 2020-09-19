@@ -1,27 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-lg-6">
     <div class="login">
         <div class="login-screen">
             <div class="app-title">
-                <h1>Select Food</h1>
+                <h1 class="headline">Select Food</h1>
             </div>
 
             <form method="POST" action="" class="login-form form-inline">
               {% csrf_token %}
+              
                 {% for field in form %}
+                <h5 class="form-labels">
                 {{ field.label }}
+                </h5>
                 {{ field }}
+                 
                 {% endfor %}
-                <input class="btn login_btn" type="submit" value="select">
+           
+                <input class="btn mt-2" type="submit" value="select">
 
             </form>
-              <form method="get">
-                  {{ myFilter.form }}
-                  <button class="btn btn-primary" type="submit">Search </button>
-              </form>
+           
         </div>
-        <table class="table">
+        
+    </div>
+    </div>
+    <div class="col-lg-6 ">
+    <div class="login">
+        <div class="login-screen">
+              <form method="get">
+                  <h1 class="headline">{{ myFilter.form }}</h1>
+                  <button class="btn mt-2" type="submit">Search </button>
+              </form> 
+        </div>
+    </div>
+
+        <h1 class="headline"> All Food Items </h1>
+        <table class="table table-bordered text-center mt-3">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Food Name</th>
@@ -32,7 +51,7 @@
             <tbody>
                 {% for food in food_items %}
                 <tr>
-                    <td>{{ food.name }}</th>
+                    <td>{{ food.name }}</td>
                     <td>{{ food.calorie }}</td>
                     <td>{{ food.quantity }}</td>
                     
@@ -41,6 +60,6 @@
             </tbody>
         </table>  
     </div>
-     
-
+</div>
+</div>
 {% endblock content %}

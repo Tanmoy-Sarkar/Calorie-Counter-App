@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Grandstander&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Grandstander&family=Ubuntu:wght@500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans+Condensed:wght@700&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap');
 header[role="banner"] #logo-main {
 
   display: block;
@@ -107,9 +109,14 @@ box-shadow: none;
 }
 
 .btn {
-  border: 2px solid transparent;
-  background: #3498DB;
-  color: #ffffff;
+background: #457fca;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #5691c8, #457fca);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #5691c8, #457fca); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+
+  color: white !important;
   font-size: 16px;
   line-height: 25px;
   padding: 10px 0;
@@ -225,4 +232,41 @@ background: linear-gradient(to right, #2a5298, #1e3c72); /* W3C, IE 10+/ Edge, F
 .card{
   font-family: 'Grandstander', cursive;
 font-family: 'Ubuntu', sans-serif;
+}
+
+.headline {
+  font-family: 'Permanent Marker', cursive;
+  padding-top:20px;
+ color: #2193b0;  /* fallback for old browsers */
+color:  -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+color:  linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.profile-text {
+  color:white;
+  font-family: 'Lobster', cursive;
+
+}
+
+.table {
+    background-color: white;
+    color: #18AD7C;
+}
+table.table-bordered > thead > tr > th {
+  border:1px solid #1e3c72;
+}
+table.table-bordered > tbody > tr > td {
+  border:1px solid #1e3c72;
+}
+
+.profile-submit {
+background: #457fca;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #5691c8, #457fca);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #5691c8, #457fca); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.form-labels {
+  font-family: 'Titillium Web', sans-serif;
+  color:#457fca;
+
 }

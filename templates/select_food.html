@@ -1,20 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="login">
+    <div class="login mt-0">
         <div class="login-screen">
             <div class="app-title">
-                <h1>Select Food</h1>
+                <h1 class="headline">Select Food</h1>
             </div>
 
             <form method="POST" action="" class="login-form">
               {% csrf_token %}
+              <h5 class="form-labels">
                 {{ form.as_p }}
-                <input class="btn login_btn" type="submit" value="select">
+            </h5>
+                <input class="btn login_btn pt-2" type="submit" value="select">
 
             </form>
         </div>
-        <table class="table">
+
+    </div>
+    <div class="container-fluid">
+   <h1 class="headline text-center pb-3">All Food Items </h1>
+        <table class="table table-bordered text-center">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Food Name</th>
@@ -25,7 +31,7 @@
             <tbody>
                 {% for food in food_items %}
                 <tr>
-                    <td>{{ food.name }}</th>
+                    <td>{{ food.name }}</td>
                     <td>{{ food.calorie }}</td>
                     <td>{{ food.quantity }}</td>
                     
@@ -33,7 +39,6 @@
                 {% endfor %}
             </tbody>
         </table>  
-    </div>
-     
+     </div>
 
 {% endblock content %}

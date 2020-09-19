@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Your Profile</h1>
+    <h1 class="headline">Your Profile :</h1>
         <div class="row mt-4 mb-4">
             <div class="col-lg-5 card card-body">
             <div class="app-title">
                 
-                <h1 class="text-center">Name :{{ request.user }} </h1>
+                <h1 class="text-center profile-text mt-2">Name: {{ request.user }} </h1>
 
             </div>
 
-            <form method="POST" action="" class="login-form">
+            <form method="POST" action="" class="login-form pt-4">
               {% csrf_token %}
                 {% for field in form %}
                 <h1>Calorie Goal For Today</h1>
                 {{ field }}
                 {% endfor %}
-                <input class="btn login_btn" type="submit" value="select">
+                <input class="btn login_btn profile-submit ml-3" type="submit" value="select">
 
             </form>
         </div>
      
         <div class="col-lg-7">
-        <h1 class="text-center">Records From Past Week</h1>
-        <table class="table">
+        <h1 class="text-center headline pb-2">Records From Past Week</h1>
+        <table class="table text-center">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Date</th>
@@ -46,8 +46,11 @@
      
    
      </div>
+
+    <h1 class="text-center headline">All Food Items</h1>
+
      <div class="row mt-5">
-      <table class="table table">
+      <table class="table text-center">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Food Name</th>

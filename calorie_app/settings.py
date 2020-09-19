@@ -124,9 +124,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-Q_CLUSTER = {
-    "name": "calorie_app",
-    "orm": "default",  # Use Django's ORM + database for broker
-    "sync":True,
-}
 
