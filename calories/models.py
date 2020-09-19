@@ -22,7 +22,7 @@ class Profile(models.Model):
 	food_selected = models.ForeignKey(Food,on_delete=models.CASCADE,null=True,blank=True)
 	quantity = models.PositiveIntegerField(default=0)
 	total_calorie = models.FloatField(default=0,null=True)
-	date = models.DateField(auto_now = True)
+	date = models.DateField(auto_now_add = True)
 	calorie_goal = models.PositiveIntegerField(default=0)
 	food_selected_today = []
 	
@@ -37,7 +37,8 @@ class Profile(models.Model):
 			self.food_selected = None
 			super(Profile, self).save(*args,**kwargs)
 		
-		
+		else:
+			super(Profile,self).save(*args,**kwargs)
 
 
 

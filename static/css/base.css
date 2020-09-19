@@ -1,22 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grandstander&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grandstander&family=Ubuntu:wght@500&display=swap');
 
 header[role="banner"] #logo-main {
 
   display: block;
   margin: 20px auto;
 }
-#navbar-primary.navbar-default {
-  background: transparent;
-  border: none;
-}
+
 #navbar-primary.navbar-default .navbar-nav {
   width: 100%;
   text-align: center;
+background: #2193b0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  border-radius: 100px ;
 }
 #navbar-primary.navbar-default .navbar-nav > li {
   display: inline-block;
   float: none;
-  
+  vertical-align: top;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-family: 'Grandstander', cursive
 
 }
 #navbar-primary.navbar-default .navbar-nav > li > a {
@@ -24,17 +31,31 @@ header[role="banner"] #logo-main {
   padding-right: 30px;
   color:#000080;
   font-size: 18px;
+  text-decoration:none;
 }
-#navbar-primary.navbar-default .navbar-nav > li > a > .active {
-   width: 140px;
-    background: red;
+ul.navbar-nav .nav-item:after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0;
+    transition: width .5s ease, background-color .5s ease;
+}
+.navbar-nav .nav-item:not(.signedcustom):hover:after  {
+    width: 100%;
+    background:white;
+    border-radius: 100px;
+}
+.navbar-nav .nav-item > a.active {
+    width: 140px;
+    background: white ;
     border-radius: 100px ;
-    color:  #18AD7C !important;
+    color:  #white !important;
     text-align: center;
     font-weight: bolder;
     display: block;
-  
+    text-decoration: none;
 }
+
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
@@ -126,12 +147,21 @@ font-family: 'IM Fell DW Pica', serif;
 }
 .card {
 
-background: -webkit-linear-gradient(to right, #283E51, #4B79A1);  
-background: linear-gradient(to right, #283E51, #4B79A1); 
+background: #457fca;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #5691c8, #457fca);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #5691c8, #457fca); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+ color:white;
 
-color:white;
+}
 
+.card a {
+	text-decoration: none ;
+	color:white;
+}
+.card a:hover, a:active {
+	text-decoration: none ;
+	color:white;
 }
 .item-card{
   transition:0.5s;
@@ -182,4 +212,17 @@ color:white;
 }
 .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
   transform: scale3d(1, 1, 1);
+}
+
+th{
+background: #1e3c72;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2a5298, #1e3c72); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+
+.card{
+  font-family: 'Grandstander', cursive;
+font-family: 'Ubuntu', sans-serif;
 }
