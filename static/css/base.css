@@ -1,13 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Grandstander&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Grandstander&family=Ubuntu:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans+Condensed:wght@700&family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap');
-header[role="banner"] #logo-main {
-
-  display: block;
-  margin: 20px auto;
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+a {
+  text-decoration:none !important;
+}
+.logo {
+  font-family: 'Lobster', cursive;
+  padding-top:0px;
+  padding-bottom:12px;
+  font-size: 60px;
+  color: #1488CC;  /* fallback for old browsers */
+  color: -webkit-linear-gradient(to right, #2B32B2, #1488CC);  /* Chrome 10-25, Safari 5.1-6 */
+  color: linear-gradient(to right, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 }
 
 #navbar-primary.navbar-default .navbar-nav {
@@ -142,9 +151,14 @@ background: linear-gradient(to right, #5691c8, #457fca); /* W3C, IE 10+/ Edge, F
 }
 
 #username {
-font-family: 'IM Fell DW Pica', serif;
+font-family: 'Pacifico', cursive;
+padding-top:0px;
+padding-bottom:30px;
 }
 
+#username sub {
+  font-size: 20px;
+}
 
 
 .item{
@@ -270,3 +284,19 @@ background: linear-gradient(to bottom, #5691c8, #457fca); /* W3C, IE 10+/ Edge, 
   color:#457fca;
 
 }
+
+
+   .custom-toggler.navbar-toggler { 
+background-color: #0093E9;
+background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+
+
+        } 
+        /* Setting the stroke to green using rgb values (0, 128, 0) */ 
+          
+        .custom-toggler .navbar-toggler-icon { 
+            background-image: url( 
+  "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); 
+        } 
+

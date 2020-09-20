@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 id="username" class="text-center mt-4">Hi {{ request.user }} </h1><span><a href="{% url "logout" %}">Logout</a></span>
+<h1 id="username" class="text-center mt-4 headline">Hi {{ request.user }}<sub><a href="{% url "logout" %}">(Logout)</a></sub></h1>
 
 
 <div class="container mt-2">
@@ -26,7 +26,7 @@
 
         <div class="card-body">
           
-          <p class="card-text text-center"> 
+          <p class="card-text text-center pt-3" style="font-size:22px"> 
           {% if calorie_goal_status > 0 %}
 			You need  {{ calorie_goal_status }} calories more to reach your goal 
 		  {% elif calorie_goal == 0 %}

@@ -14,8 +14,9 @@
 
 
 </head>
-<body><header role="banner">
-  <img id="logo-main" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/32877/logo-thing.png" width="200" alt="Logo Thing main logo" class="mt-0">
+<body>
+  <a href={% url "home" %}><h1 class="logo text-center">Calorie Drive</h1></a>
+  
 <nav id="navbar-primary" class="navbar navbar-expand-lg navbar-default active" role="navigation">
   
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -23,8 +24,8 @@
  <div class="container">
           <div class="navbar-header">
             <!-- Brand and toggle get grouped for better mobile display -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#resNav" aria-label="Toggle navigation" aria-expanded="false">
-            <span class="navbar-toggler-icon"></span>
+          <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#resNav"  id='navbar-toggler'>
+            <span class="navbar-toggler-icon" id="ham"></span>
           </button>
         </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -42,7 +43,8 @@
       
  </div>
 </nav>
-</header><!-- header role="banner" -->
+
+<!-- header role="banner" -->
         {% block content %}
         {% endblock content %}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
