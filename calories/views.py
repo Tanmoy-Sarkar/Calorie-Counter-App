@@ -111,6 +111,7 @@ def select_food(request):
 
 def add_food(request):
 	food_items = Food.objects.filter(person_of=request.user)
+	form = AddFoodForm(request.POST) 
 	if request.method == 'POST':
 		form = AddFoodForm(request.POST)
 		if form.is_valid():
@@ -127,6 +128,25 @@ def add_food(request):
 	context = {'form':form,'food_items':food_items,'myFilter':myFilter}
 
 	return render(request,'add_food.html',context)
+def update_food(request,pk):
+	food_item = Food.objects.get(id=pk)
+	form =  AddFoodForm(instance=food_item)
+	if request.method == 'POST':
+		form = AddFoodForm(request.POST,instance=food_item)
+		if form.is_valid():
+			form.save()
+			return redirect('profile')
+	context = {'form':form}
+	return render(request,'add_food.html',context)
+
+def delete_food(request,pk):
+	food_item = Food.objects.get(id=pk)
+	if request.method == "POST":
+		food_item.delete()
+		return redirect('profile')
+	context = {'food':food_item,}
+	return render(request,'delete_food.html',context)
+
 
 @login_required
 def ProfilePage(request):
