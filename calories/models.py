@@ -20,7 +20,7 @@ class Profile(models.Model):
 	person_of = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
 	calorie_count = models.FloatField(default=0,null=True,blank=True)
 	food_selected = models.ForeignKey(Food,on_delete=models.CASCADE,null=True,blank=True)
-	quantity = models.PositiveIntegerField(default=0)
+	quantity = models.FloatField(default=0)
 	total_calorie = models.FloatField(default=0,null=True)
 	date = models.DateField(auto_now_add = True)
 	calorie_goal = models.PositiveIntegerField(default=0)
