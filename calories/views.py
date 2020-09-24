@@ -16,35 +16,30 @@ def HomePageView(request):
 	
 	
 	calories = Profile.objects.filter(person_of=request.user).last()
-
 	calorie_goal = calories.calorie_goal
 	
 	if date.today() > calories.date:
 		profile=Profile.objects.create(person_of=request.user)
+		profile.save()
 		
 	calories = Profile.objects.filter(person_of=request.user).last()
-	print(calories.id)
-	print(calories.date)
-	
-	
-	
 
+	all_food_today=PostFood.objects.filter(profile=calories)
+	for food in PostFood.objects.filter(profile=calories):
+		print(food.food.name)
+		print(food.calorie_amount)
+		print(food.amount)
 	calorie_goal_status = calorie_goal -calories.total_calorie
 	over_calorie = 0
 	if calorie_goal_status < 0 :
 		over_calorie = abs(calorie_goal_status)
 
-	
-	food_selected_today = calories.food_selected_today
-	
-
 	context = {
 	'total_calorie':calories.total_calorie,
-	
 	'calorie_goal':calorie_goal,
 	'calorie_goal_status':calorie_goal_status,
 	'over_calorie' : over_calorie,
-	'food_selected_today':food_selected_today
+	'food_selected_today':all_food_today
 	}
 	
 
@@ -106,7 +101,6 @@ def select_food(request):
 		form = SelectFoodForm(request.user)
 
 	context = {'form':form,'food_items':food_items}
-
 	return render(request, 'select_food.html',context)
 
 def add_food(request):
@@ -124,10 +118,11 @@ def add_food(request):
 
 	myFilter = FoodFilter(request.GET,queryset=food_items)
 	food_items = myFilter.qs
-
 	context = {'form':form,'food_items':food_items,'myFilter':myFilter}
-
 	return render(request,'add_food.html',context)
+
+
+@login_required
 def update_food(request,pk):
 	food_item = Food.objects.get(id=pk)
 	form =  AddFoodForm(instance=food_item)
@@ -139,6 +134,7 @@ def update_food(request,pk):
 	context = {'form':form}
 	return render(request,'add_food.html',context)
 
+@login_required
 def delete_food(request,pk):
 	food_item = Food.objects.get(id=pk)
 	if request.method == "POST":
@@ -163,15 +159,8 @@ def ProfilePage(request):
 	else:
 		form = ProfileForm(instance=person)
 
-
 	some_day_last_week = timezone.now().date() -timedelta(days=7)
-	
-	
 	records=Profile.objects.filter(date__gte=some_day_last_week,date__lt=timezone.now().date(),person_of=request.user)
-	
-	print(records[1].calorie_goal)
-
-
 	context = {'form':form,'food_items':food_items,'records':records}
 
 	return render(request, 'profile.html',context)
