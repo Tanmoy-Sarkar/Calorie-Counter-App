@@ -54,17 +54,14 @@
   
     {% for food in food_selected_today %}
     <tr class="text-center">
-      <td> {{ food.0 }}</td>
-      <td> {{ food.1 }}</td>
-      <td> {{ food.2 }}</td>
+      <td> {{ food.food.name }}</td>
+      <td> {{ food.calorie_amount }}</td>
+      <td> {{ food.amount }}</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 </div>
-
-
-
 
 
 {% endblock content %}
