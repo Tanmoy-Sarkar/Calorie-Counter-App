@@ -10,7 +10,7 @@
       <div class="card item-card card-block">
         <h5 class="card-title mt-3 mb-3 text-center">Total Calories Consumed Today</h5>
         <p class="card-text text-center">{{ total_calorie }}</p> 
-  	</div>
+    </div>
     </div>
     <div class="col-lg-6 col-sm-12 item">
       <div class="card item-card card-block mt-sm-2 mt-lg-0">
@@ -21,19 +21,19 @@
   </div>
   
 </div>
-	
-      <div class="card text-white border-danger text-center mt-4"  style="border-radius: 20px;">
+  
+      <div class="card text-white text-center mt-4"  style="border-radius: 20px;">
 
         <div class="card-body">
           
           <p class="card-text text-center pt-3" style="font-size:22px"> 
           {% if calorie_goal_status > 0 %}
-			You need  {{ calorie_goal_status }} calories more to reach your goal 
-		  {% elif calorie_goal == 0 %}
-			<a href="{% url "profile" %}"> Enter your calorie goal for the day </a>
-		  {% else %}
-			You surpassed your goal by {{ over_calorie }} calories 
-		  {% endif %} </p>
+      You need  {{ calorie_goal_status }} calories more to reach your goal 
+      {% elif calorie_goal == 0 %}
+      <a href="{% url "profile" %}"> Enter your calorie goal for the day </a>
+      {% else %}
+      You surpassed your goal by {{ over_calorie }} calories 
+      {% endif %} </p>
 
         </div>
 

@@ -124,6 +124,8 @@ def add_food(request):
 
 @login_required
 def update_food(request,pk):
+	food_items = Food.objects.filter(person_of=request.user)
+
 	food_item = Food.objects.get(id=pk)
 	form =  AddFoodForm(instance=food_item)
 	if request.method == 'POST':
@@ -131,7 +133,9 @@ def update_food(request,pk):
 		if form.is_valid():
 			form.save()
 			return redirect('profile')
-	context = {'form':form}
+	myFilter = FoodFilter(request.GET,queryset=food_items)
+	context = {'form':form,'food_items':food_items,'myFilter':myFilter}
+
 	return render(request,'add_food.html',context)
 
 @login_required
